@@ -23,7 +23,7 @@ function Home() {
   };
 
   return (
-    <div className="container-fluid mt- p-0">
+    <div className="container-fluid mt-2 p-0">
       <div className="shadow p-3 mb-3 bg-white rounded ">
         <div className="row card-header ">
           <div className="col">

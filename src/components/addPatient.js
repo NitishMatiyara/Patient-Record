@@ -182,7 +182,7 @@ function AddPatient() {
           <Form.Group as={Col}>
             <Form.Label>Civil Status</Form.Label>
             <Form.Select name="civil" value={civil} onChange={getPatient}>
-              <option>Married</option>
+              <option selected>Married</option>
               <option>Single</option>
             </Form.Select>
           </Form.Group>
@@ -197,7 +197,7 @@ function AddPatient() {
           <Form.Group as={Col}>
             <Form.Label>Gender</Form.Label>
             <Form.Select name="gender" value={gender} onChange={getPatient}>
-              <option>Male</option>
+              <option selected>Male</option>
               <option>Female</option>
             </Form.Select>
           </Form.Group>
