@@ -3,13 +3,19 @@ import { Firestore, getFirestore } from "firebase/firestore";
 import { enableIndexedDbPersistence } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyChe4eg7li4Aat2-huQ6aUtG-f5oB5RSYY",
-  authDomain: "patient-record-app-ae41d.firebaseapp.com",
-  databaseURL: "https://patient-record-app-ae41d-default-rtdb.firebaseio.com",
-  projectId: "patient-record-app-ae41d",
-  storageBucket: "patient-record-app-ae41d.appspot.com",
-  messagingSenderId: "476187529915",
-  appId: "1:476187529915:web:d3c0954e819dfcb3404f9e",
+
+  apiKey: "AIzaSyDzTl45RCllLP3kn0MWhiuVL_V-IPEOgBw",
+
+  authDomain: "patient-record-31d63.firebaseapp.com",
+
+  projectId: "patient-record-31d63",
+
+  storageBucket: "patient-record-31d63.appspot.com",
+
+  messagingSenderId: "740922855416",
+
+  appId: "1:740922855416:web:9e2bf8163d5a691da8500d"
+
 };
 const app = initializeApp(firebaseConfig);
 
