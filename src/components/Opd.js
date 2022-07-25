@@ -4,10 +4,10 @@ import "../style.css";
 
 const Opd = () => {
   return (
-    <div className="container-fluid p-0">
-      <div id="Findings" className="card shadow mb-4">
+    <div className="container-fluid p-0 mt-3 mb-3">
+      <div id="Findings" className="card shadow mb-5">
         <div className="card-header py-3">
-          <h5 className="mb-2 text-gray-800"> Out Patient Findings</h5>
+          <h5 className="mb-2 text-gray"> Out Patient Findings</h5>
         </div>
         <div className="card-body p-0">
           <div className="container"></div>
@@ -212,28 +212,14 @@ const Opd = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-sm-6">
-                  <div>
-                    <div className="row no-gutters">
-                      <div className="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                        {" "}
-                        Attending Physician
-                      </div>
-                    </div>
-                    <select name="a_physician" className="form-control">
-                      <option defaultValue="">Select Physician</option>
-                    </select>
-                    <div className="text-danger text-center"></div>
-                  </div>
-                </div>
                 <div className=" container col-sm-6">
                   <button
                     type="submit"
                     className="btn btn-success btn-icon-split"
                     name="submit"
-                    href="http://localhost/patientrecords/multiplerecordcontrol/add_multiple_findings"
+                    style={{ float: "right" }}
                   >
-                    <i className="fa fa-arrow-right"></i>
+                    <i className="fa fa-arrow-right mr-2"></i>
                     Add Findings
                   </button>
                 </div>
