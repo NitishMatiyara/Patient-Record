@@ -23,34 +23,30 @@ function Home() {
   };
 
   return (
-    <div className="container-fluid pl-0">
-      <div className="crud mt-1 bg-body rounded">
-        <div className="row ">
-          <div className="col-sm-3 mt-5 mb-4 ">
-            <div className="search">
-              <form className="form-inline">
-                <input
-                  className="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Search Patient"
-                  aria-label="Search"
-                />
-              </form>
-            </div>
+    <div className="container-fluid mt- p-0">
+      <div className="shadow p-3 mb-3 bg-white rounded ">
+        <div className="row card-header ">
+          <div className="col">
+            <h5 className="mb-2 text-gray-800">Patient Records</h5>
           </div>
-          <div className="col-sm-3 offset-sm-2 mt-2" style={{ color: "black" }}>
-            <h3>
-              <b>Patient Records</b>
-            </h3>
-          </div>
-          <div className="col-sm-3 offset-sm-1  mt-5 mb-4 ">
+          <div className="col">
             <Link to="/patients/add" className="btn btn-outline-success">
               Add New Patient
             </Link>
           </div>
         </div>
+        <div className="col">
+          <form className="form-inline">
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search Patient"
+              aria-label="Search"
+            />
+          </form>
+        </div>
         <div className="row">
-          <div className="table-responsive ">
+          <div className="table-responsive p-0">
             <table
               className="table table-sm table-bordered"
               style={{ color: "green" }}
@@ -82,10 +78,20 @@ function Home() {
                       <td></td>
                       <td>
                         <Link to={`/patients/${doc.id}`}>
-                          <i className="material-icons">&#xE417;</i>
+                          <i
+                            className="material-icons"
+                            style={{ color: "blueviolet" }}
+                          >
+                            &#xE417;
+                          </i>
                         </Link>
                         <Link to={`/patients/edit/${doc.id}`}>
-                          <i className="material-icons">&#xE254;</i>
+                          <i
+                            className="material-icons"
+                            style={{ color: "black" }}
+                          >
+                            &#xE254;
+                          </i>
                         </Link>
                         <button
                           style={{ color: "red", border: "none" }}
