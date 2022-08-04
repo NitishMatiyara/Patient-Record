@@ -67,7 +67,12 @@ function Home() {
                   type="search"
                   placeholder="Search Patient"
                   aria-label="Search"
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) =>
+                    setQuery(
+                      e.target.value.charAt(0).toUpperCase() +
+                        e.target.value.toLowerCase().slice(1)
+                    )
+                  }
                 />
               </form>
             </div>
@@ -90,7 +95,7 @@ function Home() {
               </thead>
               <tbody className="text-gray text-center">
                 {patients
-                  .filter((doc) => doc.firstname.toLowerCase().includes(query))
+                  .filter((doc) => doc.firstname.includes(query))
                   .map((doc, index) => {
                     return (
                       <tr key={doc.id}>
