@@ -1,11 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style.css";
+import OpdData from "../services/opdFindings";
+import { useParams, useNavigate } from "react-router-dom";
 
-const Opd = () => {
+const OpdAdd = () => {
+  let navigate = useNavigate();
+  const { id } = useParams();
+  const [opdDetail, setOpdDetail] = useState({
+    casenumber: "",
+    complaint: "",
+    historyillness: "",
+    bp: "",
+    rr: "",
+    cr: "",
+    pr: "",
+    wt: "",
+    temp: "",
+    date: "",
+    physicalexam: "",
+    diagnosis: "",
+    treatment: "",
+  });
+
+  const {
+    casenumber,
+    complaint,
+    historyillness,
+    bp,
+    rr,
+    cr,
+    pr,
+    wt,
+    temp,
+    date,
+    physicalexam,
+    diagnosis,
+    treatment,
+  } = opdDetail;
+
+  let name, value;
+  const getOpd = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+
+    setOpdDetail({ ...opdDetail, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newOpd = {
+      casenumber,
+      complaint,
+      historyillness,
+      bp,
+      rr,
+      cr,
+      pr,
+      wt,
+      temp,
+      date,
+      physicalexam,
+      diagnosis,
+      treatment,
+    };
+    console.log(newOpd);
+
+    try {
+      await OpdData.addOpd(newOpd);
+      navigate(`/patients/details/${id}`);
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
     <div className="container-fluid p-0 mt-3 mb-3">
-      <div id="Findings" className="card shadow mb-5">
+      <form id="Findings" className="card shadow mb-5" onSubmit={handleSubmit}>
         <div className="card-header py-3">
           <h5 className="mb-2 text-gray"> Out Patient Findings</h5>
         </div>
@@ -26,9 +98,10 @@ const Opd = () => {
                       <input
                         className="form-control "
                         type="text"
-                        name="a_casenumber"
+                        name="casenumber"
                         placeholder="Enter Case Number"
-                        defaultValue=""
+                        onChange={getOpd}
+                        value={casenumber}
                       />{" "}
                     </div>
                     <div className="text-danger text-center"></div>
@@ -44,7 +117,8 @@ const Opd = () => {
                       <textarea
                         className="form-control"
                         type="text"
-                        name="a_chief_complaint"
+                        name="complaint"
+                        value={complaint}
                         placeholder="Enter Chief Complaint"
                       ></textarea>
                     </div>
@@ -60,8 +134,9 @@ const Opd = () => {
                       <input
                         className="form-control "
                         type="text"
-                        name="a_historyillness"
-                        defaultValue=""
+                        name="historyillness"
+                        onChange={getOpd}
+                        value={historyillness}
                         placeholder="Enter History of Present Illness"
                       />
                     </div>
@@ -80,8 +155,9 @@ const Opd = () => {
                         <input
                           className="form-control"
                           type="text"
-                          name="a_bp"
-                          defaultValue=""
+                          name="bp"
+                          onChange={getOpd}
+                          value={bp}
                           placeholder="BP"
                         />
                       </div>
@@ -90,8 +166,9 @@ const Opd = () => {
                         <input
                           className="form-control"
                           type="text"
-                          name="a_rr"
-                          defaultValue=""
+                          name="rr"
+                          onChange={getOpd}
+                          value={rr}
                           placeholder="RR"
                         />
                       </div>
@@ -100,8 +177,9 @@ const Opd = () => {
                         <input
                           className="form-control"
                           type="text"
-                          name="a_cr"
-                          defaultValue=""
+                          name="cr"
+                          onChange={getOpd}
+                          value={cr}
                           placeholder="CR"
                         />
                       </div>
@@ -112,8 +190,9 @@ const Opd = () => {
                         <input
                           className="form-control"
                           type="text"
-                          name="a_temp"
-                          defaultValue=""
+                          name="temp"
+                          onChange={getOpd}
+                          value={temp}
                           placeholder="TEMP"
                         />
                       </div>
@@ -122,8 +201,9 @@ const Opd = () => {
                         <input
                           className="form-control"
                           type="text"
-                          name="a_wt"
-                          defaultValue=""
+                          name="wt"
+                          onChange={getOpd}
+                          value={wt}
                           placeholder="WT"
                         />
                       </div>
@@ -132,8 +212,9 @@ const Opd = () => {
                         <input
                           className="form-control"
                           type="text"
-                          name="a_pr"
-                          defaultValue=""
+                          name="pr"
+                          onChange={getOpd}
+                          value={pr}
                           placeholder="PR"
                         />
                       </div>
@@ -152,9 +233,10 @@ const Opd = () => {
                       <input
                         className="form-control "
                         type="date"
-                        name="a_date"
-                        placeholder="Enter Case Number"
-                        defaultValue=""
+                        name="date"
+                        required
+                        onChange={getOpd}
+                        value={date}
                       />{" "}
                     </div>
                     <div className="text-danger text-center"></div>
@@ -170,7 +252,9 @@ const Opd = () => {
                       <textarea
                         className="form-control"
                         type="text"
-                        name="a_physicalexam"
+                        name="physicalexam"
+                        onChange={getOpd}
+                        value={physicalexam}
                         placeholder="Enter Physical Examination"
                       ></textarea>
                     </div>
@@ -186,7 +270,9 @@ const Opd = () => {
                       <textarea
                         className="form-control  "
                         type="text"
-                        name="a_diagnosis"
+                        name="diagnosis"
+                        onChange={getOpd}
+                        value={diagnosis}
                         placeholder="Enter Diagnosis"
                       ></textarea>
                     </div>
@@ -203,7 +289,10 @@ const Opd = () => {
                       <textarea
                         className="form-control  "
                         type="text"
-                        name="a_medical_treatment"
+                        name="treatment"
+                        onChange={getOpd}
+                        value={treatment}
+                        required
                         placeholder="Enter Medication/Treatment"
                       ></textarea>
                     </div>
@@ -216,7 +305,6 @@ const Opd = () => {
                   <button
                     type="submit"
                     className="btn btn-success btn-icon-split"
-                    name="submit"
                     style={{ float: "right" }}
                   >
                     <i className="fa fa-arrow-right mr-2"></i>
@@ -227,9 +315,9 @@ const Opd = () => {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
 
-export default Opd;
+export default OpdAdd;

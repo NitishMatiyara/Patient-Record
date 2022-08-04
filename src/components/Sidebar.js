@@ -43,7 +43,7 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="#" className="nav-link text-light">
+              <Link to="/patients/paymentTable" className="nav-link text-light">
                 <i className="fa fa-user-plus mr-3 text-primary fa-fw"></i>
                 Appointments
               </Link>

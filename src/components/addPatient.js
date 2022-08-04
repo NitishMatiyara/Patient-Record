@@ -18,6 +18,8 @@ function AddPatient() {
     occupation: "",
     gender: "",
     civil: "",
+    treatment: "",
+    payment: "",
   });
 
   const {
@@ -33,6 +35,8 @@ function AddPatient() {
     occupation,
     gender,
     civil,
+    treatment,
+    payment,
   } = patientDetail;
 
   const [message, setMessage] = useState({ error: false, msg: "" });
@@ -52,7 +56,6 @@ function AddPatient() {
       casenum === "" ||
       firstname === "" ||
       lastname === "" ||
-      middlename === "" ||
       age === "" ||
       city === "" ||
       birthdate === "" ||
@@ -78,6 +81,8 @@ function AddPatient() {
       occupation,
       gender,
       civil,
+      treatment,
+      payment,
     };
     console.log(newPatient);
 
@@ -91,7 +96,7 @@ function AddPatient() {
 
   return (
     <>
-      <div className="p-3 box">
+      <div className="p-1 box">
         {message?.msg && (
           <Alert
             variant={message?.error ? "danger" : "success"}
@@ -102,21 +107,20 @@ function AddPatient() {
           </Alert>
         )}{" "}
       </div>
-      <Form onSubmit={handleSubmit} className="card shadow p-2">
+      <Form onSubmit={handleSubmit} className="card shadow mb-5">
         <div className="card-header py-3">
           <h5 className="mb-2 text-gray-800"> Add Patient</h5>
         </div>
-        <Form.Group as={Col} className="p-0">
+        <Form.Group as={Col} className="col-3 mt-1 px-3">
           <Form.Label>Case No.</Form.Label>
           <Form.Control
             name="casenum"
             value={casenum}
             onChange={getPatient}
-            type="text"
-            placeholder=""
+            type="number"
           />
         </Form.Group>
-        <Row className="mb-3">
+        <Row className="mb-2 px-3">
           <Form.Group as={Col}>
             <Form.Label>FirstName</Form.Label>
             <Form.Control
@@ -149,7 +153,7 @@ function AddPatient() {
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-2 px-3">
           <Form.Label>Address</Form.Label>
           <Form.Control
             name="address"
@@ -158,7 +162,7 @@ function AddPatient() {
             placeholder="Enter address"
           />
         </Form.Group>
-        <Row className="mb-3">
+        <Row className="mb-2 px-3">
           <Form.Group as={Col}>
             <Form.Label>City</Form.Label>
             <Form.Control
@@ -181,43 +185,78 @@ function AddPatient() {
           </Form.Group>
           <Form.Group as={Col}>
             <Form.Label>Civil Status</Form.Label>
-            <Form.Select name="civil" value={civil} onChange={getPatient}>
-              <option selected>Married</option>
+            <Form.Select
+              name="civil"
+              defaultValue={civil}
+              onChange={getPatient}
+            >
+              <option>--Select--</option>
+              <option>Married</option>
               <option>Single</option>
             </Form.Select>
           </Form.Group>
         </Row>
 
-        <Row className="mb-3">
+        <Row className="mb-2 px-3">
           <Form.Group as={Col}>
             <Form.Label>Age</Form.Label>
-            <Form.Control name="age" value={age} onChange={getPatient} />
+            <Form.Control
+              type="number"
+              name="age"
+              value={age}
+              onChange={getPatient}
+            />
           </Form.Group>
 
           <Form.Group as={Col}>
             <Form.Label>Gender</Form.Label>
-            <Form.Select name="gender" value={gender} onChange={getPatient}>
-              <option value={gender}>Male</option>
+            <Form.Select
+              name="gender"
+              defaultValue={gender}
+              onChange={getPatient}
+            >
+              <option>--Select--</option>
+              <option>Male</option>
               <option>Female</option>
             </Form.Select>
           </Form.Group>
 
           <Form.Group as={Col}>
             <Form.Label>Mobile</Form.Label>
-            <Form.Control name="mobile" value={mobile} onChange={getPatient} />
+            <Form.Control
+              type="number"
+              name="mobile"
+              value={mobile}
+              onChange={getPatient}
+            />
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-2 px-3">
           <Form.Label>Occupation</Form.Label>
           <Form.Control
             name="occupation"
             value={occupation}
             onChange={getPatient}
           />
+          <Form.Label>Payment</Form.Label>
+          <Form.Control name="payment" value={payment} onChange={getPatient} />
+        </Form.Group>
+        <Form.Group className="mb-2 px-3">
+          <Form.Label>Treatment</Form.Label>
+          <Form.Control
+            name="treatment"
+            value={treatment}
+            onChange={getPatient}
+          />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button
+          variant="success"
+          type="submit"
+          style={{ width: "50%", alignSelf: "center" }}
+          className="m-3"
+        >
           Submit
         </Button>
       </Form>
