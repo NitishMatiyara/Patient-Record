@@ -16,7 +16,7 @@ function EditPatient() {
     birthdate: "",
     address: "",
     mobile: "",
-    occupation: "",
+
     gender: "",
     civil: "",
     treatment: "",
@@ -33,7 +33,7 @@ function EditPatient() {
     birthdate,
     address,
     mobile,
-    occupation,
+
     gender,
     civil,
     treatment,
@@ -66,7 +66,6 @@ function EditPatient() {
       birthdate === "" ||
       address === "" ||
       mobile === "" ||
-      occupation === "" ||
       gender === "" ||
       civil === ""
     ) {
@@ -83,7 +82,7 @@ function EditPatient() {
       birthdate,
       address,
       mobile,
-      occupation,
+
       gender,
       civil,
       treatment,
@@ -246,12 +245,6 @@ function EditPatient() {
         </Row>
 
         <Form.Group className="mb-2 px-3">
-          <Form.Label>Occupation</Form.Label>
-          <Form.Control
-            name="occupation"
-            value={occupation}
-            onChange={getPatient}
-          />
           <Form.Label>Payment</Form.Label>
           <Form.Control name="payment" value={payment} onChange={getPatient} />
         </Form.Group>

@@ -9,6 +9,7 @@ import PatientDetail from "./PatientDetail";
 
 function Home() {
   const [patients, setPatients] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     getPatients();
@@ -66,6 +67,7 @@ function Home() {
                   type="search"
                   placeholder="Search Patient"
                   aria-label="Search"
+                  onChange={(e) => setQuery(e.target.value)}
                 />
               </form>
             </div>
@@ -87,48 +89,50 @@ function Home() {
                 </tr>
               </thead>
               <tbody className="text-gray text-center">
-                {patients.map((doc, index) => {
-                  return (
-                    <tr key={doc.id}>
-                      <td>{doc.casenum}</td>
-                      <td>
-                        {doc.firstname +
-                          " " +
-                          doc.middlename +
-                          " " +
-                          doc.lastname}
-                      </td>
-                      <td>{doc.age}</td>
-                      <td>{doc.mobile}</td>
-                      <td>{doc.treatment}</td>
-                      <td>{doc.payment}</td>
-                      <td>
-                        <Link to={`/patients/details/${doc.id}`}>
-                          <i
-                            className="material-icons "
-                            style={{ color: "#009E60" }}
+                {patients
+                  .filter((doc) => doc.firstname.toLowerCase().includes(query))
+                  .map((doc, index) => {
+                    return (
+                      <tr key={doc.id}>
+                        <td>{doc.casenum}</td>
+                        <td>
+                          {doc.firstname +
+                            " " +
+                            doc.middlename +
+                            " " +
+                            doc.lastname}
+                        </td>
+                        <td>{doc.age}</td>
+                        <td>{doc.mobile}</td>
+                        <td>{doc.treatment}</td>
+                        <td>{doc.payment}</td>
+                        <td>
+                          <Link to={`/patients/details/${doc.id}`}>
+                            <i
+                              className="material-icons "
+                              style={{ color: "#009E60" }}
+                            >
+                              &#xE417;
+                            </i>
+                          </Link>
+                          <Link to={`/patients/edit/${doc.id}`}>
+                            <i
+                              className="material-icons"
+                              style={{ color: "#4682B4" }}
+                            >
+                              &#xE254;
+                            </i>
+                          </Link>
+                          <button
+                            style={{ color: "red", border: "none" }}
+                            onClick={() => deleteHandler(doc.id)}
                           >
-                            &#xE417;
-                          </i>
-                        </Link>
-                        <Link to={`/patients/edit/${doc.id}`}>
-                          <i
-                            className="material-icons"
-                            style={{ color: "#4682B4" }}
-                          >
-                            &#xE254;
-                          </i>
-                        </Link>
-                        <button
-                          style={{ color: "red", border: "none" }}
-                          onClick={() => deleteHandler(doc.id)}
-                        >
-                          <i className="material-icons">&#xE872;</i>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                            <i className="material-icons">&#xE872;</i>
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
