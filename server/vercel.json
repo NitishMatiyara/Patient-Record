@@ -1,12 +1,11 @@
 {
     "version": 2,
-    "name": "patient-record",
     "builds": [{
-        "src": "app.js",
+        "src": "./app.js",
         "use": "@vercel/node"
     }],
     "routes": [{
         "src": "/(.*)",
-        "dest": "/app.js"
+        "dest": "/"
     }]
 }
