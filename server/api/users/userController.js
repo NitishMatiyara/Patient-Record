@@ -97,6 +97,7 @@ class UserController {
               expires: new Date(Date.now() + 3600 * 1000 * 24 * 1),
               httpOnly: true,
               sameSite: "none",
+              secure: true,
             });
             res.send({
               status: "success",
@@ -278,14 +279,16 @@ class UserController {
         { expiresIn: "5d" }
       );
       res.cookie("auth", token, {
-        expires: new Date(Date.now() + 500000),
+        expires: new Date(Date.now() + 3600 * 1000 * 24 * 1),
+        sameSite: "none",
+        secure: true,
       });
       return res.redirect(
-        "${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/success"
+        `${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/success`
       );
     } catch (error) {
       return res.redirect(
-        "${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/failure"
+        `${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/failure`
       );
     }
   };
