@@ -1,3 +1,4 @@
+// Generating Google Oauth Link to Authenticate User
 export const getGoogleUrl = (from) => {
   const rootUrl = `https://accounts.google.com/o/oauth2/v2/auth`;
 
