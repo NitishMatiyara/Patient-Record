@@ -10,7 +10,7 @@ const initialState = {
 };
 
 // Replace 'API_URL' with your actual backend server URL
-const API_URL = `http://localhost:8000/api/auth`;
+const API_URL = `${process.env.BACKEND_SERVER_URL}api/auth`;
 
 // Async Thunk for User Registration
 export const registerUser = createAsyncThunk(
