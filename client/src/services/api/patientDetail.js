@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-const baseUrl = "http://localhost:8000/api/patient";
+const baseUrl = `${process.env.BACKEND_SERVER_URL}/api/patient`;
 
 export const addPatient = async (patientDetail) => {
   try {
