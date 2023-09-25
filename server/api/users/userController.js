@@ -94,8 +94,9 @@ class UserController {
               { expiresIn: "5d" }
             );
             res.cookie("auth", token, {
-              expires: new Date(Date.now() + 500000000),
+              expires: new Date(Date.now() + 3600 * 1000 * 24 * 1),
               httpOnly: true,
+              sameSite: "none",
             });
             res.send({
               status: "success",
