@@ -220,7 +220,7 @@ class UserController {
       code,
       client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
       client_secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
-      redirect_uri: process.env.GOOGLE_OAUTH_REDIRECT_URL,
+      redirect_uri: process.env.GOOGLE_OAUTH_REDIRECT_URI,
       grant_type: "authorization_code",
     };
     try {
