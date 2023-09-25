@@ -21,7 +21,7 @@ const Dashboard = () => {
   }, [token]);
   const fetchUser = async () => {
     const response = await axios.get(
-      `${process.env.BACKEND_SERVER_URL}/api/auth/loggedUser`,
+      `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/auth/loggedUser`,
       { withCredentials: true }
     );
 

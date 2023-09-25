@@ -10,7 +10,7 @@ const initialState = {
 };
 
 // Replace 'API_URL' with your actual backend server URL
-const API_URL = `https://patient-record-api.vercel.app/api/auth`;
+const API_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/auth`;
 
 // Async Thunk for User Registration
 export const registerUser = createAsyncThunk(
