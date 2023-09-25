@@ -10,14 +10,14 @@ const initialState = {
 };
 
 // Replace 'API_URL' with your actual backend server URL
-const API_URL = `${process.env.BACKEND_SERVER_URL}/api`;
+const API_URL = `${process.env.BACKEND_SERVER_URL}`;
 
 // Async Thunk for User Registration
 export const registerUser = createAsyncThunk(
-  "auth/register",
+  "api/auth/register",
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_URL}/register`, userData);
+      const response = await axios.post(`${API_URL}`, userData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -27,10 +27,10 @@ export const registerUser = createAsyncThunk(
 
 // Async Thunk for User Login
 export const loginUser = createAsyncThunk(
-  "auth/login",
+  "api/auth/login",
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_URL}/login`, userData, {
+      const response = await axios.post(`${API_URL}`, userData, {
         withCredentials: true,
       });
       return response.data;
