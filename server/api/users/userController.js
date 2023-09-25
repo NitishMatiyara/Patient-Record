@@ -47,7 +47,7 @@ class UserController {
             });
             const saved_user = await doc.save();
             //---------//
-            const link = `http://localhost:3000/auth/user/verify-email/${saved_user._id}/${token}`;
+            const link = `${process.env.BACKEND_SERVER_URL}/auth/user/verify-email/${saved_user._id}/${token}`;
             await sendEmail(email, link);
 
             //---------//
@@ -280,11 +280,11 @@ class UserController {
         expires: new Date(Date.now() + 500000),
       });
       return res.redirect(
-        "http://localhost:3000/auth/user/social-sign-in/success"
+        "${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/success"
       );
     } catch (error) {
       return res.redirect(
-        "http://localhost:3000/auth/user/social-sign-in/failure"
+        "${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/failure"
       );
     }
   };

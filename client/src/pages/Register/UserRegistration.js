@@ -18,23 +18,6 @@ const UserRegistration = () => {
     confirmPassword: "",
   });
 
-  useEffect(() => {
-    const headers = {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGUzNzg1MWNiZjMxNDkwMTA0ODQyNTciLCJpYXQiOjE2OTI3OTI5OTUsImV4cCI6MTY5MzIyNDk5NX0.T1yDJvEd6HcNH4WrsotC3ncmagtUjYxJo7EuJHBVWAU",
-    };
-    axios
-      .get("http://localhost:8000/api/auth/loggeduser", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(1, res.data);
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  }, []);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
