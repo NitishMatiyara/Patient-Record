@@ -26,13 +26,9 @@ app.use(express.json());
 // Load routes
 app.use(router);
 
-// --------------------------deployment------------------------------
-
 app.get("/", (req, res) => {
-    res.send("API is running..");
-  });
-
-// --------------------------deployment------------------------------
+  res.send("API is running..");
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
