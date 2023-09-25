@@ -284,11 +284,11 @@ class UserController {
         secure: true,
       });
       return res.redirect(
-        `${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/success`
+        `${process.env.CLIENT_URL}/auth/user/social-sign-in/success`
       );
     } catch (error) {
       return res.redirect(
-        `${process.env.BACKEND_SERVER_URL}/auth/user/social-sign-in/failure`
+        `${process.env.CLIENT_URL}/auth/user/social-sign-in/failure`
       );
     }
   };
