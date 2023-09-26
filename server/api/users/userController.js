@@ -262,11 +262,14 @@ class UserController {
         // Add the user
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
+        const verifyToken = crypto.randomBytes(32).toString("hex");
+
         const doc = new UserModel({
           name: name,
           email: email,
           password: hashPassword,
           verified: true,
+          verifyToken: verifyToken,
         });
         await doc.save();
       }
@@ -287,6 +290,7 @@ class UserController {
         `${process.env.CLIENT_URL}/auth/user/social-sign-in/success`
       );
     } catch (error) {
+      console.log(error);
       return res.redirect(
         `${process.env.CLIENT_URL}/auth/user/social-sign-in/failure`
       );
