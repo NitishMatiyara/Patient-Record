@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useLocation } from "react-router-dom";
 import { getGoogleUrl } from "../../services/auth/getGoogleUrl";
-import axios from "axios";
 
 const UserLogin = () => {
   const [showPassword, setShowPassword] = useState(true);
@@ -39,7 +38,7 @@ const UserLogin = () => {
           navigate("/dashboard");
         }, 3000);
       } else {
-        toast.error(result.payload.message, { theme: "dark" });
+        toast.error(result.payload.message, { theme: "colored" });
       }
     });
   };
@@ -104,7 +103,7 @@ const UserLogin = () => {
                       type="submit"
                       className="btn btn-primary btn-block mt-3"
                     >
-                      {status == "loading" ? "Loading..." : "UserLogin"}
+                      {status == "loading" ? "Loading..." : "Login"}
                     </button>
                     <ToastContainer />
                   </div>
@@ -128,7 +127,7 @@ const UserLogin = () => {
                       src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg"
                       alt=""
                     />{" "}
-                  </a>
+                  </a>{" "}
                   <span
                     onClick={() => window.location.replace(getGoogleUrl(from))}
                     target="_blank"
@@ -142,7 +141,7 @@ const UserLogin = () => {
                     />{" "}
                   </span>{" "}
                   <a
-                    href="https://www.github.com"
+                    href={"https://www.github.com"}
                     target="_blank"
                     className="px-2"
                   >

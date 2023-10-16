@@ -3,19 +3,15 @@ import { useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 
 const Home = () => {
   return (
     <div className="banner">
       <ToastContainer />
       <div className="box flex">
-        <div
-          id="tabs"
-          style={{ position: "absolute", top: "4rem", right: "25rem" }}
-        >
+        <div id="tabs">
           <Link to="/auth/login">
-            <Button className="mx-4" variant="success">
+            <Button id="tabItem" className="mx-4" variant="success">
               Login
             </Button>{" "}
           </Link>

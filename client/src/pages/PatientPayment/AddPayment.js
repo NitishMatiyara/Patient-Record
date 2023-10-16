@@ -15,7 +15,6 @@ const AddPayment = () => {
   });
   const [message, setMessage] = useState({ error: false, msg: "" });
 
-
   const { date, description, amount } = paymentDetail;
 
   let name, value;
@@ -38,18 +37,20 @@ const AddPayment = () => {
         setPaymentDetail({
           date: "",
           description: "",
-          amount: ""
-
-        })
+          amount: "",
+        });
       } else if (response.status == 440) {
         setMessage({ error: true, msg: response.data.message });
         setTimeout(() => {
-
-          navigate('/home')
-        }, 5000)
-      }
-      else {
-        setMessage({ error: true, msg: response.data.error ? response.data.error : response.data.message });
+          navigate("/home");
+        }, 5000);
+      } else {
+        setMessage({
+          error: true,
+          msg: response.data.error
+            ? response.data.error
+            : response.data.message,
+        });
       }
     } catch (err) {
       setMessage({ error: true, msg: err.message });
@@ -71,10 +72,13 @@ const AddPayment = () => {
           </Alert>
         )}{" "}
       </div>
-      <div className='container-fluid mt-5' style={{ width: '75vw', marginLeft: '14rem' }}>
+      <div
+        className="container-fluid mt-5"
+        style={{ width: "94%", marginLeft: "2.5rem" }}
+      >
         <div className="card shadow mx-4">
           <div className="card-header py-3">
-            <h5 className="mb-2 text-gray-800">Add AddPayment</h5>
+            <h5 className="mb-2 text-gray-800">Add Payment</h5>
           </div>
           <div className="container my-5">
             <form onSubmit={submitHandler}>
@@ -117,16 +121,14 @@ const AddPayment = () => {
                 </div>
               </div>
 
-              <button
-                className="btn btn-success w-25"
-                style={{ marginLeft: "11rem" }}
-                type="submit"
-              >
+              <button className="btn btn-success ml-4" type="submit">
                 Submit
               </button>
             </form>
           </div>
-        </div></div></>
+        </div>
+      </div>
+    </>
   );
 };
 

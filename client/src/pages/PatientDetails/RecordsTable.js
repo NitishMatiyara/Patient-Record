@@ -53,7 +53,7 @@ function RecordsTable() {
       <ToastContainer />
       <div
         className="container-fluid mt-1"
-        style={{ width: "83vw", marginLeft: "14rem" }}
+        style={{ width: "94%", marginLeft: "2.5rem" }}
       >
         <div
           className=" card shadow mb-3 bg-white rounded"
@@ -91,7 +91,7 @@ function RecordsTable() {
                 style={{ marginTop: "1.2rem", width: "max-content" }}
               >
                 <input
-                  className="form-control mr-sm-2"
+                  className="form-control ml-3 mr-sm-2"
                   type="search"
                   placeholder="Search Patient"
                   aria-label="Search"

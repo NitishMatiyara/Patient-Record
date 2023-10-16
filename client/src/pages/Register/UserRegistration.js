@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../store/slices/UserSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { getGoogleUrl } from "../../services/auth/getGoogleUrl";
 
 const UserRegistration = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,9 @@ const UserRegistration = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -121,9 +124,7 @@ const UserRegistration = () => {
                       type="submit"
                       className="btn btn-primary btn-block mt-3"
                     >
-                      {status == "loading"
-                        ? "Registering..."
-                        : "UserRegistation"}
+                      {status == "loading" ? "Registering..." : "Register"}
                     </button>
                   </div>
                   <ToastContainer />
@@ -148,8 +149,8 @@ const UserRegistration = () => {
                       alt=""
                     />{" "}
                   </a>{" "}
-                  <a
-                    href="https://www.google.com"
+                  <span
+                    onClick={() => window.location.replace(getGoogleUrl(from))}
                     target="_blank"
                     className="px-2"
                   >
@@ -159,9 +160,9 @@ const UserRegistration = () => {
                       src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
                       alt=""
                     />{" "}
-                  </a>{" "}
+                  </span>{" "}
                   <a
-                    href="https://www.github.com"
+                    href={"https://www.github.com"}
                     target="_blank"
                     className="px-2"
                   >

@@ -59,7 +59,7 @@ const EditPayment = () => {
       </div>
       <div
         className="container-fluid mt-5"
-        style={{ width: "75vw", marginLeft: "14rem" }}
+        style={{ width: "94%", marginLeft: "2.5rem" }}
       >
         <div className="card shadow mx-4">
           <div className="card-header py-3">
@@ -105,11 +105,7 @@ const EditPayment = () => {
                   />
                 </div>
               </div>
-              <button
-                className="btn btn-success w-25"
-                style={{ marginLeft: "11rem" }}
-                type="submit"
-              >
+              <button className="btn btn-success ml-4" type="submit">
                 Update
               </button>
             </form>

@@ -112,7 +112,7 @@ function EditPatient() {
       </div>
       <div
         className="container-fluid mt-1"
-        style={{ width: "83vw", marginLeft: "14rem" }}
+        style={{ width: "94%", marginLeft: "2.5rem" }}
       >
         <Form
           onSubmit={handleSubmit}
@@ -185,16 +185,7 @@ function EditPatient() {
                 placeholder="City"
               />
             </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>Birthdate</Form.Label>
-              <Form.Control
-                name="birthdate"
-                value={birthdate}
-                onChange={editPatient}
-                type="date"
-                placeholder="Birthdate"
-              />
-            </Form.Group>
+
             <Form.Group as={Col}>
               <Form.Label>Civil Status</Form.Label>
               <Form.Select
@@ -206,6 +197,16 @@ function EditPatient() {
                 <option>Married</option>
                 <option>Single</option>
               </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label>Birthdate</Form.Label>
+              <Form.Control
+                name="birthdate"
+                value={birthdate}
+                onChange={editPatient}
+                type="date"
+                placeholder="Birthdate"
+              />
             </Form.Group>
           </Row>
 

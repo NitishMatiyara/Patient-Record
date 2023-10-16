@@ -137,7 +137,7 @@ function AddPatient() {
       </div>
       <div
         className="container-fluid mt-1"
-        style={{ width: "83vw", marginLeft: "14rem" }}
+        style={{ width: "94%", marginLeft: "2.5rem" }}
       >
         <Form
           onSubmit={handleSubmit}
@@ -212,17 +212,7 @@ function AddPatient() {
                 placeholder="City"
               />
             </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>Birthdate</Form.Label>
-              <Form.Control
-                className="text-capitalize"
-                name="birthdate"
-                value={birthdate}
-                onChange={getPatient}
-                type="date"
-                placeholder="Birthdate"
-              />
-            </Form.Group>
+
             <Form.Group as={Col}>
               <Form.Label>Civil Status</Form.Label>
               <Form.Select
@@ -234,6 +224,17 @@ function AddPatient() {
                 <option value={"Married"}>Married</option>
                 <option value={"Single"}>Single</option>
               </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label>Birthdate</Form.Label>
+              <Form.Control
+                className="text-capitalize"
+                name="birthdate"
+                value={birthdate}
+                onChange={getPatient}
+                type="date"
+                placeholder="Birthdate"
+              />
             </Form.Group>
           </Row>
 

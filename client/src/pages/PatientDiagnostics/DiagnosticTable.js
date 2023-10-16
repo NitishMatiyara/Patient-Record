@@ -22,7 +22,14 @@ const DiagnosticTable = () => {
   };
 
   const columns = [
-    { id: 1, dataField: "date", text: "Date" },
+    {
+      id: 1,
+      dataField: "date",
+      text: "Date",
+      // headerStyle: () => {
+      //   return { width: "1rem" };
+      // },
+    },
     { id: 2, dataField: "diagnosis", text: "Diagnosis" },
     { id: 3, dataField: "treatment", text: "Treatment" },
     {

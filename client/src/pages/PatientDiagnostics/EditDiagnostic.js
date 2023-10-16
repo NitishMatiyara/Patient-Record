@@ -75,7 +75,7 @@ const EditDiagnostic = () => {
       </div>
       <div
         className="container-fluid mt-1"
-        style={{ width: "83vw", marginLeft: "14rem" }}
+        style={{ width: "94%", marginLeft: "2.5rem" }}
       >
         <form
           id="Findings"

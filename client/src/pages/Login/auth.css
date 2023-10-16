@@ -117,12 +117,8 @@ a[target='_blank'] {
         margin: 30px 0
     }
 
-
-    .tabs {
-        position: absolute;
-        top: 10rem;
-        left: 5rem
-    }
+    
+  
 
     .bordert:after {
         left: 25%
