@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const EmailVerify = () => {
@@ -45,7 +45,11 @@ const EmailVerify = () => {
                 <div className="fs-4" style={{ color: "gray" }}>
                   Email verified successfully.
                 </div>
-                <div className="btn btn-success mt-5" type="button">
+                <div
+                  className="btn btn-success mt-5"
+                  type="button"
+                  onClick={() => <Navigate to={"/"} />}
+                >
                   Login
                 </div>{" "}
               </div>
