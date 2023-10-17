@@ -124,7 +124,7 @@ a:hover {
 
   #tabs {
     position: absolute;
-    top: 15rem;
+    top: 20rem;
     left: 1rem;
     display: flex;
     flex-direction: column;

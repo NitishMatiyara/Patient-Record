@@ -53,7 +53,7 @@ function RecordsTable() {
       <ToastContainer />
       <div
         className="container-fluid mt-1"
-        style={{ width: "94%", marginLeft: "2.5rem" }}
+        style={{ maxWidth: "89%", marginLeft: "2.5rem" }}
       >
         <div
           className=" card shadow mb-3 bg-white rounded"

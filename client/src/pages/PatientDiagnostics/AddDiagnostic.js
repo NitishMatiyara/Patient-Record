@@ -111,7 +111,7 @@ const AddDiagnostic = () => {
       </div>
       <div
         className="container-fluid mt-1"
-        style={{ width: "94%", marginLeft: "2.5rem" }}
+        style={{ width: "89%", marginLeft: "2.5rem" }}
       >
         <form
           id="Findings"

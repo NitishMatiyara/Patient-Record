@@ -59,7 +59,7 @@ const EditPayment = () => {
       </div>
       <div
         className="container-fluid mt-5"
-        style={{ width: "94%", marginLeft: "2.5rem" }}
+        style={{ width: "89%", marginLeft: "2.5rem" }}
       >
         <div className="card shadow mx-4">
           <div className="card-header py-3">

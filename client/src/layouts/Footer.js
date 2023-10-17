@@ -9,7 +9,7 @@ const Footer = () => {
         height: "1.6rem",
         bottom: "0",
         position: "fixed",
-        zIndex: 1,
+        zIndex: -3,
         width: "100vw",
       }}
     >
