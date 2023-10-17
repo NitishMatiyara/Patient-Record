@@ -23,29 +23,27 @@ const DiagnosticTable = () => {
 
   const columns = [
     {
-      id: 1,
       dataField: "date",
       text: "Date",
-      // headerStyle: () => {
-      //   return { width: "1rem" };
-      // },
     },
-    { id: 2, dataField: "diagnosis", text: "Diagnosis" },
-    { id: 3, dataField: "treatment", text: "Treatment" },
+    { dataField: "diagnosis", text: "Diagnosis" },
+    { dataField: "treatment", text: "Treatment" },
     {
-      id: 4,
       dataField: "action",
       text: "Action",
       formatter: (cell, row) => (
         <>
           <Link to={`/patients/${row.id}`}>
-            <i className="material-icons " style={{ color: "#009E60" }}>
+            <i className="material-icons action" style={{ color: "#009E60" }}>
               &#xE417;
             </i>
           </Link>
           {console.log(row)}
           <Link to={`/patient/opdEdit/${id}/${row._id}`}>
-            <i className="material-icons px-2" style={{ color: "#4682B4" }}>
+            <i
+              className="material-icons px-2 action"
+              style={{ color: "#4682B4" }}
+            >
               &#xE254;
             </i>
           </Link>
@@ -53,7 +51,7 @@ const DiagnosticTable = () => {
             style={{ color: "#d11a2a", border: "none", cursor: "pointer" }}
             onClick={() => deleteHandler(row._id)}
           >
-            <i className="material-icons">&#xE872;</i>
+            <i className="material-icons action">&#xE872;</i>
           </span>
         </>
       ),
@@ -61,7 +59,7 @@ const DiagnosticTable = () => {
   ];
 
   return (
-    <div className="card mx-3 mt-3">
+    <div className="card mx-2 mt-3">
       <div className="card-header text-center">
         <span className="fs-5 font-weight-bold">OPD</span>
         <Link

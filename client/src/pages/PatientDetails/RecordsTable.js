@@ -142,7 +142,7 @@ function RecordsTable() {
                           <td>{doc.age}</td>
                           <td>{doc.mobile}</td>
                           <td>{doc.treatment}</td>
-                          <td>
+                          <td className="action">
                             <Link to={`/patient/details/${doc._id}`}>
                               <i
                                 className="material-icons "
@@ -153,7 +153,7 @@ function RecordsTable() {
                             </Link>
                             <Link to={`/patient/edit/${doc._id}`}>
                               <i
-                                className="material-icons"
+                                className="material-icons "
                                 style={{
                                   color: "#4682B4",
                                   margin: "0 5px 0 5px",

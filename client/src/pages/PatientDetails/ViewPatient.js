@@ -20,7 +20,7 @@ const ViewPatient = () => {
   return (
     <div
       className="container-fluid mt-1"
-      style={{ width: "89%", marginLeft: "2.5rem" }}
+      style={{ width: "89%", marginLeft: "2.5rem", fontSize: "0.8rem" }}
     >
       <div className="card shadow m-2 ">
         {patient.map((element) => {

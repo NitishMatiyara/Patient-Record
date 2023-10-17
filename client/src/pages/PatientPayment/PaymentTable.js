@@ -32,12 +32,15 @@ const PaymentTable = () => {
       formatter: (cell, row) => (
         <>
           <Link to={`/patient/${row._id}`}>
-            <i className="material-icons " style={{ color: "#009E60" }}>
+            <i className="material-icons action" style={{ color: "#009E60" }}>
               &#xE417;
             </i>
           </Link>
           <Link to={`/payment/edit/${id}/${row._id}`}>
-            <i className="material-icons px-2" style={{ color: "#4682B4" }}>
+            <i
+              className="material-icons px-2 action"
+              style={{ color: "#4682B4" }}
+            >
               &#xE254;
             </i>
           </Link>
@@ -45,7 +48,7 @@ const PaymentTable = () => {
             style={{ color: "#d11a2a", border: "none", cursor: "pointer" }}
             onClick={() => deleteHandler(row._id)}
           >
-            <i className="material-icons">&#xE872;</i>
+            <i className="material-icons action">&#xE872;</i>
           </span>
         </>
       ),
@@ -55,7 +58,7 @@ const PaymentTable = () => {
   return (
     <>
       <ToastContainer />
-      <div className="card mx-3 mb-3">
+      <div className="card mx-2 mb-3">
         <div className="card-header text-center">
           <span className="fs-5 font-weight-bold">Payment</span>
           <Link

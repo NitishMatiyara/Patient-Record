@@ -38,7 +38,7 @@ const UserLogin = () => {
           navigate("/dashboard");
         }, 3000);
       } else {
-        toast.error(result.payload.message, { theme: "colored" });
+        toast.error(result.payload.message, { theme: "dark" });
       }
     });
   };
