@@ -47,7 +47,7 @@ class UserController {
             });
             const saved_user = await doc.save();
             //---------//
-            const link = `${process.env.BACKEND_SERVER_URL}/auth/user/verify-email/${saved_user._id}/${token}`;
+            const link = `${process.env.CLIENT_URL}/auth/user/verify-email/${saved_user._id}/${token}`;
             await sendEmail(email, link);
 
             //---------//
