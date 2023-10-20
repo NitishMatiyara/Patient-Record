@@ -14,7 +14,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   let token = Cookies.get("userToken");
   useEffect(() => {
-    console.log(token);
     if (!token) {
       navigate("/auth/login");
     }

@@ -4,12 +4,13 @@ import jwt from "jsonwebtoken";
 import sendEmail from "../../utils/sendEmail.js";
 import axios from "axios";
 import qs from "qs";
-import validate from "deep-email-validator";
 import crypto from "crypto";
 
 class UserController {
   static userRegistration = async (req, res) => {
     const { name, email, password, confirmPassword } = req.body;
+
+    // Check for valid email
     const options = {
       method: "GET",
       url: "https://validect-email-verification-v1.p.rapidapi.com/v1/verify",
@@ -29,6 +30,8 @@ class UserController {
         message: "Please provide a valid email address.",
       });
     }
+
+    // Register user to db
     const user = await UserModel.findOne({ email: email });
     if (user) {
       res.send({ status: "failed", message: "Email already exists" });
@@ -46,18 +49,17 @@ class UserController {
               verifyToken: token,
             });
             const saved_user = await doc.save();
-            //---------//
+
+            // Send verification link to email
             const link = `${process.env.CLIENT_URL}/auth/user/verify-email/${saved_user._id}/${token}`;
             await sendEmail(email, link);
 
-            //---------//
             res.status(201).send({
               status: "success",
               message:
                 "A verification link sent to mail. Please, verify to continue.",
             });
           } catch (error) {
-            console.log(error);
             res
               .status(500)
               .send({ status: "failed", message: "Internal Server Error" });
@@ -120,7 +122,6 @@ class UserController {
         res.send({ status: "failed", message: "All Fields are Required" });
       }
     } catch (error) {
-      console.log(error);
       res.send({ status: "failed", message: "Unable to Login" });
     }
   };
@@ -163,7 +164,7 @@ class UserController {
           expiresIn: "15m",
         });
         const link = `http://127.0.0.1:3000/api/user/reset/${user._id}/${token}`;
-        console.log(link);
+
         // // Send Email
         // let info = await transporter.sendEmail({
         //   from: process.env.EMAIL_FROM,
@@ -211,7 +212,6 @@ class UserController {
         res.send({ status: "failed", message: "All Fields are Required" });
       }
     } catch (error) {
-      console.log(error);
       res.send({ status: "failed", message: "Invalid Token" });
     }
   };
@@ -233,7 +233,7 @@ class UserController {
       });
       return res.data;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
@@ -249,7 +249,7 @@ class UserController {
       );
       return res.data;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
@@ -259,7 +259,7 @@ class UserController {
     try {
       const user = await UserModel.findOne({ email: email });
       if (!user) {
-        // Add the user
+        // Add user to db with its gmail credentials
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
         const verifyToken = crypto.randomBytes(32).toString("hex");
@@ -290,7 +290,6 @@ class UserController {
         `${process.env.CLIENT_URL}/auth/user/social-sign-in/success`
       );
     } catch (error) {
-      console.log(error);
       return res.redirect(
         `${process.env.CLIENT_URL}/auth/user/social-sign-in/failure`
       );
@@ -314,6 +313,31 @@ class UserController {
       });
     } catch (error) {
       res.send({ status: "failed", message: "Email not verified" });
+    }
+  };
+
+  static userResendVerifyLink = async (req, res) => {
+    try {
+      const { email } = req.body;
+      const token = crypto.randomBytes(32).toString("hex");
+
+      const user = await UserModel.findOneAndUpdate(
+        {
+          email: email,
+        },
+        { $set: { verifyToken: token } }
+      );
+      const link = `${process.env.CLIENT_URL}/auth/user/verify-email/${user._id}/${token}`;
+      await sendEmail(email, link);
+      res.send({
+        status: "success",
+        message: "New Verification Link has been sent successfully.",
+      });
+    } catch (error) {
+      res.send({
+        status: "failed",
+        message: "Email not registered. Kindly, register yourself",
+      });
     }
   };
 }

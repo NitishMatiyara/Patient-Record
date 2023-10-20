@@ -67,9 +67,9 @@ function EditPatient() {
 
     try {
       const response = await updatePatient(id, updatedPatient);
-      if (response.status == 201) {
+      if (response.status === 201) {
         setMessage({ error: false, msg: response.data.message });
-      } else if (response.status == 440) {
+      } else if (response.status === 440) {
         setMessage({ error: true, msg: response.data.message });
         setTimeout(() => {
           navigate("/home");

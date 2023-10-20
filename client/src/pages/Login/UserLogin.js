@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./auth.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/slices/UserSlice";
@@ -29,7 +29,7 @@ const UserLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(formData)).then((result) => {
-      if (result.payload.status == "success") {
+      if (result.payload.status === "success") {
         const userToken = result.payload.token;
         const expirationTime = new Date(new Date().getTime() + 6000000);
         Cookies.set("userToken", userToken, { expires: expirationTime });
@@ -103,7 +103,7 @@ const UserLogin = () => {
                       type="submit"
                       className="btn btn-primary btn-block mt-3"
                     >
-                      {status == "loading" ? "Loading..." : "Login"}
+                      {status === "loading" ? "Loading..." : "Login"}
                     </button>
                     <ToastContainer />
                   </div>

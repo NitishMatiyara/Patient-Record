@@ -4,9 +4,8 @@ import { Button, Col, Form, Row, Alert, Badge } from "react-bootstrap";
 import { addPatient, getAllPatients } from "../../services/api/patientDetail";
 
 function AddPatient() {
-  let navigate = useNavigate();
-
   const [count, setCount] = useState();
+  let navigate = useNavigate();
   useEffect(() => {
     const caseCount = async () => {
       const data = await getAllPatients();
@@ -86,7 +85,7 @@ function AddPatient() {
 
     try {
       const response = await addPatient(newPatient);
-      if (response.status == 201) {
+      if (response.status === 201) {
         setMessage({ error: false, msg: response.data.message });
 
         setPatientDetail({
@@ -102,7 +101,7 @@ function AddPatient() {
           gender: "",
           civilstatus: "",
         });
-      } else if (response.status == 440) {
+      } else if (response.status === 440) {
         setMessage({ error: true, msg: response.data.message });
         setTimeout(() => {
           navigate("/home");

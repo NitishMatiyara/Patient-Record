@@ -3,14 +3,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import {
-  getAllPatients,
-  deletePatient,
-} from "../../services/api/patientDetail";
+import { getAllPatients } from "../../services/api/patientDetail";
+import { deleteRecord } from "../../helpers/action";
 
 function RecordsTable() {
   const [patients, setPatients] = useState([]);
-  const [message, setMessage] = useState({ error: false, msg: "" });
   const [query, setQuery] = useState("");
   let navigate = useNavigate();
 
@@ -24,28 +21,9 @@ function RecordsTable() {
   };
 
   const deleteHandler = async (patientId) => {
-    let confirm_delete;
-    confirm_delete = window.confirm("Are you sure to delete this patient ?");
-    if (confirm_delete == true) {
-      try {
-        const response = await deletePatient(patientId);
-        if (response.status == 201) {
-          toast.success(response.data.message, { theme: "dark" });
-          getPatients();
-        } else if (response.status == 440) {
-          toast.warning(response.data.message);
-          setTimeout(() => {
-            navigate("/home");
-          }, 5000);
-        } else {
-          toast.error(
-            response.data.error ? response.data.error : response.data.message
-          );
-        }
-      } catch (err) {
-        toast.error(err.message);
-      }
-    }
+    let collectionName = "patient";
+    await deleteRecord(patientId, collectionName);
+    getPatients();
   };
 
   return (
@@ -141,7 +119,7 @@ function RecordsTable() {
                           </td>
                           <td>{doc.age}</td>
                           <td>{doc.mobile}</td>
-                          <td>{doc.treatment}</td>
+                          <td>{doc.diagnostic[0]?.treatment}</td>
                           <td className="action">
                             <Link to={`/patient/details/${doc._id}`}>
                               <i

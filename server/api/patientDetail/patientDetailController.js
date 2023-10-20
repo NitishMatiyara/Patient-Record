@@ -112,7 +112,14 @@ class PatientDetailController {
   static getAllPatients = async (req, res) => {
     try {
       const userId = req.user._id.toString();
-      const patientData = await PatientDetailModel.find({ userId: userId });
+      const patientData = await PatientDetailModel.find({
+        userId: userId,
+      }).populate({
+        path: "diagnostic",
+        select: "treatment",
+        options: { sort: [{ treatment: "desc" }] },
+        limit: 1,
+      });
       return res.status(200).send({
         status: "success",
         message: "Patient details fetched successfully",
@@ -121,7 +128,7 @@ class PatientDetailController {
     } catch (error) {
       return res.status(400).send({
         status: "failed",
-        message: "Unable to add patient",
+        message: "Unable to get all patients",
         error: error,
       });
     }

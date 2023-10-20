@@ -7,7 +7,7 @@ import { addDiagnosis } from "../../services/api/patientDiagnostic";
 const AddDiagnostic = () => {
   let navigate = useNavigate();
   const { id } = useParams();
-  const [opdDetail, setOpdDetail] = useState({
+  const [diagnosisDetail, setDiagnosisDetail] = useState({
     complaint: "",
     illnessHistory: "",
     bloodPressure: "",
@@ -32,14 +32,14 @@ const AddDiagnostic = () => {
     physicalExamination,
     diagnosis,
     treatment,
-  } = opdDetail;
+  } = diagnosisDetail;
 
   let name, value;
-  const getOpd = (e) => {
+  const getDiagnosisData = (e) => {
     name = e.target.name;
     value = e.target.value;
 
-    setOpdDetail({ ...opdDetail, [name]: value });
+    setDiagnosisDetail({ ...diagnosisDetail, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -61,10 +61,10 @@ const AddDiagnostic = () => {
 
     try {
       const response = await addDiagnosis(newOpd);
-      if (response.status == 201) {
+      if (response.status === 201) {
         setMessage({ error: false, msg: response.data.message });
 
-        setOpdDetail({
+        setDiagnosisDetail({
           complaint: "",
           illnessHistory: "",
           bloodPressure: "",
@@ -76,7 +76,7 @@ const AddDiagnostic = () => {
           diagnosis: "",
           treatment: "",
         });
-      } else if (response.status == 440) {
+      } else if (response.status === 440) {
         setMessage({ error: true, msg: response.data.message });
         setTimeout(() => {
           navigate("/home");
@@ -119,7 +119,7 @@ const AddDiagnostic = () => {
           onSubmit={handleSubmit}
         >
           <div className="card-header py-3">
-            <h5 className="mb-2 text-gray"> Out Patient Findings</h5>
+            <h5 className="mb-2 text-gray">Add OPD</h5>
           </div>
           <div className="card-body p-0">
             <div className="container"></div>
@@ -139,7 +139,8 @@ const AddDiagnostic = () => {
                           className="form-control "
                           type="text"
                           name="case_no"
-                          placeholder="Enter Case Number"
+                          disabled
+                          placeholder=""
                         />{" "}
                       </div>
                       <div className="text-danger text-center"></div>
@@ -157,7 +158,7 @@ const AddDiagnostic = () => {
                           type="text"
                           name="complaint"
                           value={complaint}
-                          onChange={getOpd}
+                          onChange={getDiagnosisData}
                           placeholder="Enter Chief Complaint"
                         ></textarea>
                       </div>
@@ -174,7 +175,7 @@ const AddDiagnostic = () => {
                           className="form-control "
                           type="text"
                           name="illnessHistory"
-                          onChange={getOpd}
+                          onChange={getDiagnosisData}
                           value={illnessHistory}
                           placeholder="Enter History of Present Illness"
                         />
@@ -195,7 +196,7 @@ const AddDiagnostic = () => {
                             className="form-control"
                             type="number"
                             name="bloodPressure"
-                            onChange={getOpd}
+                            onChange={getDiagnosisData}
                             value={bloodPressure}
                             placeholder="BP"
                           />
@@ -206,7 +207,7 @@ const AddDiagnostic = () => {
                             className="form-control"
                             type="number"
                             name="temperature"
-                            onChange={getOpd}
+                            onChange={getDiagnosisData}
                             value={temperature}
                             placeholder="&deg;C"
                           />
@@ -217,7 +218,7 @@ const AddDiagnostic = () => {
                             className="form-control"
                             type="text"
                             name="weight"
-                            onChange={getOpd}
+                            onChange={getDiagnosisData}
                             value={weight}
                             placeholder="KG"
                           />
@@ -228,7 +229,7 @@ const AddDiagnostic = () => {
                             className="form-control"
                             type="number"
                             name="pulseRate"
-                            onChange={getOpd}
+                            onChange={getDiagnosisData}
                             value={pulseRate}
                             placeholder="PR"
                           />
@@ -250,7 +251,7 @@ const AddDiagnostic = () => {
                           type="date"
                           name="date"
                           required
-                          onChange={getOpd}
+                          onChange={getDiagnosisData}
                           value={date}
                         />{" "}
                       </div>
@@ -268,7 +269,7 @@ const AddDiagnostic = () => {
                           className="form-control"
                           type="text"
                           name="physicalExamination"
-                          onChange={getOpd}
+                          onChange={getDiagnosisData}
                           value={physicalExamination}
                           placeholder="Enter Physical Examination"
                         ></textarea>
@@ -286,7 +287,7 @@ const AddDiagnostic = () => {
                           className="form-control  "
                           type="text"
                           name="diagnosis"
-                          onChange={getOpd}
+                          onChange={getDiagnosisData}
                           value={diagnosis}
                           placeholder="Enter Diagnosis"
                         ></textarea>
@@ -305,7 +306,7 @@ const AddDiagnostic = () => {
                           className="form-control  "
                           type="text"
                           name="treatment"
-                          onChange={getOpd}
+                          onChange={getDiagnosisData}
                           value={treatment}
                           required
                           placeholder="Enter Medication/Treatment"
@@ -323,7 +324,7 @@ const AddDiagnostic = () => {
                       style={{ float: "right" }}
                     >
                       <i className="fa fa-arrow-right mr-2"></i>
-                      Add Findings
+                      Submit
                     </button>
                   </div>
                 </div>

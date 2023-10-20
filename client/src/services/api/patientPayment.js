@@ -18,7 +18,6 @@ export const getPayment = async (paymentId) => {
     const { data } = await axios.get(`${baseUrl}/get?paymentId=${paymentId}`);
     return data;
   } catch (error) {
-    console.log(error);
     return error.response;
   }
 };

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-
 // Defining Schema
-const patientDiagnosticSchema = new mongoose.Schema({
-    complaint: { type: String, required: true, trim: true },
+const patientDiagnosticSchema = new mongoose.Schema(
+  {
+    complaint: { type: String, trim: true },
     illnessHistory: { type: String, trim: true },
     bloodPressure: { type: Number, trim: true },
     respiratoryRate: { type: Number, trim: true },
@@ -15,17 +15,22 @@ const patientDiagnosticSchema = new mongoose.Schema({
     diagnosis: { type: String, trim: true },
     treatment: { type: String, trim: true },
     patientId: {
-        type: mongoose.Schema.Types.ObjectId
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "patient_detail",
     },
     userId: {
-        type: mongoose.Schema.Types.ObjectId
-    }
-
-}, {
-    timestamps: true
-})
+      type: mongoose.Schema.Types.ObjectId,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // Model
-const PatientDiagnosticModel = mongoose.model("patient_diagnostic", patientDiagnosticSchema)
+const PatientDiagnosticModel = mongoose.model(
+  "patient_diagnostic",
+  patientDiagnosticSchema
+);
 
 export default PatientDiagnosticModel;

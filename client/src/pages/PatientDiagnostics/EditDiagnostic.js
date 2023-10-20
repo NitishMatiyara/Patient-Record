@@ -83,7 +83,7 @@ const EditDiagnostic = () => {
           onSubmit={handleSubmit}
         >
           <div className="card-header py-3">
-            <h5 className="mb-2 text-gray"> Out Patient Findings</h5>
+            <h5 className="mb-2 text-gray">Edit OPD</h5>
           </div>
           <div className="card-body p-0">
             <div className="container"></div>
@@ -103,7 +103,8 @@ const EditDiagnostic = () => {
                           className="form-control "
                           type="text"
                           name="case_no"
-                          placeholder="Enter Case Number"
+                          disabled
+                          placeholder=""
                         />{" "}
                       </div>
                       <div className="text-danger text-center"></div>
@@ -287,7 +288,7 @@ const EditDiagnostic = () => {
                       style={{ float: "right" }}
                     >
                       <i className="fa fa-arrow-right mr-2"></i>
-                      Add Findings
+                      Update
                     </button>
                   </div>
                 </div>

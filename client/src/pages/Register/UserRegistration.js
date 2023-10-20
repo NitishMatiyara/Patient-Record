@@ -28,7 +28,7 @@ const UserRegistration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(registerUser(formData)).then((result) => {
-      if (result.payload.status == "success") {
+      if (result.payload.status === "success") {
         toast.success(result.payload.message, { theme: "dark" });
         setTimeout(() => {
           navigate("/auth/login");
@@ -124,7 +124,7 @@ const UserRegistration = () => {
                       type="submit"
                       className="btn btn-primary btn-block mt-3"
                     >
-                      {status == "loading" ? "Registering..." : "Register"}
+                      {status === "loading" ? "Registering..." : "Register"}
                     </button>
                   </div>
                   <ToastContainer />

@@ -74,13 +74,13 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/patients/opd" className="nav-link text-light">
+              <Link to="/dashboard" className="nav-link text-light">
                 <i className="fa fa-inr mr-3 text-primary fa-fw"></i>
                 {isOpen ? "Payments" : ""}
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/patients/paymentTable" className="nav-link text-light">
+              <Link to="/dashboard" className="nav-link text-light">
                 <i className="fa fa-user-plus mr-3 text-primary fa-fw"></i>
                 {isOpen ? "Appointments" : ""}
               </Link>

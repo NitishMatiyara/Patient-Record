@@ -8,18 +8,20 @@ import { ToastContainer } from "react-toastify";
 
 const PaymentTable = () => {
   const [payments, setPayments] = useState([]);
-  const { id } = useParams();
+  const { id: patientId } = useParams();
   useEffect(() => {
-    getPayments(id);
+    getPayments(patientId);
   }, [payments]);
 
-  const getPayments = async (id) => {
-    const data = await getAllPayments(id);
+  const getPayments = async (patientId) => {
+    const data = await getAllPayments(patientId);
     setPayments(data.data);
   };
 
   const deleteHandler = async (id) => {
-    await deleteRecord(id, "payment");
+    let collectionName = "payment";
+    await deleteRecord(id, collectionName);
+    getPayments(patientId);
   };
 
   const columns = [
@@ -36,7 +38,7 @@ const PaymentTable = () => {
               &#xE417;
             </i>
           </Link>
-          <Link to={`/payment/edit/${id}/${row._id}`}>
+          <Link to={`/payment/edit/${patientId}/${row._id}`}>
             <i
               className="material-icons px-2 action"
               style={{ color: "#4682B4" }}
@@ -62,7 +64,7 @@ const PaymentTable = () => {
         <div className="card-header text-center">
           <span className="fs-5 font-weight-bold">Payment</span>
           <Link
-            to={`/payment/add/${id}`}
+            to={`/payment/add/${patientId}`}
             className="btn btn-outline-success"
             style={{ float: "right" }}
           >

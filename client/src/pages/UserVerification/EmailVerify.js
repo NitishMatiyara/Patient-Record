@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const EmailVerify = () => {
@@ -10,12 +10,10 @@ const EmailVerify = () => {
   useEffect(() => {
     const verifyEmailUrl = async () => {
       try {
-        const url = `${process.env.BACKEND_SERVER_URL}/api/auth/user/verify-email?userId=${param.id}&token=${param.token}`;
+        const url = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/auth/user/verify-email?userId=${param.id}&token=${param.token}`;
         const { data } = await axios.get(url);
-        console.log(data);
         setValidUrl(true);
       } catch (error) {
-        console.log(error);
         setValidUrl(false);
       }
     };
@@ -45,13 +43,10 @@ const EmailVerify = () => {
                 <div className="fs-4" style={{ color: "gray" }}>
                   Email verified successfully.
                 </div>
-                <div
-                  className="btn btn-success mt-5"
-                  type="button"
-                  onClick={() => <Navigate to={"/"} />}
-                >
+
+                <Link to={"/"} className="btn btn-success mt-5">
                   Login
-                </div>{" "}
+                </Link>
               </div>
             </div>
           </div>
@@ -88,9 +83,12 @@ const EmailVerify = () => {
                   Invalid Link
                 </div>
 
-                <div className="btn btn-secondary mt-5" type="button">
-                  Kindly, verify again.
-                </div>
+                <Link
+                  to={"/auth/user/resend-verify-link"}
+                  className="btn btn-secondary mt-5"
+                >
+                  Please, verify again.
+                </Link>
               </div>
             </div>
           </div>

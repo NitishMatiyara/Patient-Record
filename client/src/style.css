@@ -94,21 +94,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* a {
-  color: gray;
+
+#tabs{
+  position: absolute;
+  top: 5rem;
+  left: 50rem;
 }
 
-a:hover {
-  color: white;
-} */
-
-#tabs {
-      position: absolute;
-      top: 5rem;
-      left: 50rem
-    }
 @media (max-width: 768px) {
- 
 .action {
   font-size: medium !important;
 }

@@ -1,5 +1,3 @@
-// authSlice.js
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -9,7 +7,6 @@ const initialState = {
   error: null,
 };
 
-// Replace 'API_URL' with your actual backend server URL
 const API_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/auth`;
 
 // Async Thunk for User Registration

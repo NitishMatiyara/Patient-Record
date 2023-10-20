@@ -11,6 +11,7 @@ router.use("/loggeduser", checkUserAuth);
 router.post("/register", UserController.userRegistration);
 router.post("/login", UserController.userLogin);
 router.get("/user/verify-email", UserController.userVerifyEmail);
+router.put("/user/resend-verify-link", UserController.userResendVerifyLink);
 
 // Protected Routes
 router.post("/changepassword", UserController.changeUserPassword);

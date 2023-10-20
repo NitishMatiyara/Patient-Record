@@ -6,7 +6,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = Cookies.get("userToken");
   if (!isAuthenticated) {
-    // not logged in so redirect to login page with the return url
+    // not logged in so redirect to login page
     return <Navigate to="/home" />;
   }
 

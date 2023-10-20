@@ -1,8 +1,7 @@
 import React from "react";
-import { useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
-import { Link, useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   return (

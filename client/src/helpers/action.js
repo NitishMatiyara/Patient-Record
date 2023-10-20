@@ -10,7 +10,7 @@ import {
 export const deleteRecord = async (id, collection) => {
   let confirm_delete, response;
   confirm_delete = window.confirm("Are you sure to delete this record ?");
-  if (confirm_delete == true) {
+  if (confirm_delete === true) {
     try {
       switch (collection) {
         case "patient":
@@ -25,9 +25,9 @@ export const deleteRecord = async (id, collection) => {
         default:
           break;
       }
-      if (response.status == 201) {
+      if (response.status === 201) {
         toast.success(response.data.message, { theme: "dark" });
-      } else if (response.status == 440) {
+      } else if (response.status === 440) {
         toast.warning(response.data.message);
         setTimeout(() => {
           <Navigate to={"/home"} />;
@@ -44,7 +44,6 @@ export const deleteRecord = async (id, collection) => {
 };
 
 export const updateRecord = async (id, data, collection, setMessage) => {
-  console.log(id, data);
   let response;
   try {
     switch (collection) {
@@ -60,9 +59,9 @@ export const updateRecord = async (id, data, collection, setMessage) => {
       default:
         break;
     }
-    if (response.status == 201) {
+    if (response.status === 201) {
       setMessage({ error: false, msg: response.data.message });
-    } else if (response.status == 440) {
+    } else if (response.status === 440) {
       setMessage({ error: true, msg: response.data.message });
       setTimeout(() => {
         <Navigate to={"/home"} />;
@@ -81,5 +80,3 @@ export const updateRecord = async (id, data, collection, setMessage) => {
 export const getRecord = () => {};
 
 export const getAllRecords = () => {};
-
-export const addRecord = () => {};

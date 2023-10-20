@@ -1,9 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
-
 import { Route, Routes } from "react-router-dom";
-
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home/Home";
 import UserLogin from "./pages/Login/UserLogin";
@@ -21,6 +19,7 @@ import AddPayment from "./pages/PatientPayment/AddPayment";
 import EditPayment from "./pages/PatientPayment/EditPayment";
 import PaymentTable from "./pages/PatientPayment/PaymentTable";
 import EmailVerify from "./pages/UserVerification/EmailVerify";
+import ResendVerifyLink from "./pages/UserVerification/ResendVerifyLink";
 
 const App = () => {
   return (
@@ -31,6 +30,10 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/auth/login" element={<UserLogin />} />
           <Route path="/auth/register" element={<UserRegistration />} />
+          <Route
+            path="/auth/user/resend-verify-link"
+            element={<ResendVerifyLink />}
+          />
           <Route
             path="/auth/user/verify-email/:id/:token"
             element={<EmailVerify />}

@@ -1,4 +1,5 @@
 import PatientDiagnosticModel from "./patientDiagnosticModel.js";
+import PatientDetailModel from "../patientDetail/patientDetailModel.js";
 
 class PatientDiagnosticController {
   static addDiagnosis = async (req, res) => {
@@ -15,6 +16,11 @@ class PatientDiagnosticController {
       } else {
         data = new PatientDiagnosticModel(payload);
         await data.save();
+        const updatedPatient = await PatientDetailModel.findOneAndUpdate(
+          { _id: payload.patientId },
+          { $push: { diagnostic: data._id } }
+        );
+
         return res.status(201).send({
           status: "success",
           message: "Diagnosis info added successfully",
@@ -39,18 +45,18 @@ class PatientDiagnosticController {
             .send({ status: "failed", message: "Invalid Id passed" })
         : res.status(200).send({
             status: "success",
-            message: "Payment detail fetched successfully",
+            message: "Diagnostic detail fetched successfully",
             data: data,
           });
     } catch (error) {
       if (error.name == "CaseError")
         return res
           .status(400)
-          .send({ status: "failed", message: "Invalid Payment Id" });
+          .send({ status: "failed", message: "Invalid Diagnostic Id" });
 
       return res.status(400).send({
         status: "failed",
-        message: "Unable to get payment",
+        message: "Unable to get data",
         error: error,
       });
     }
@@ -67,11 +73,12 @@ class PatientDiagnosticController {
     } catch (error) {
       return res.status(400).send({
         status: "failed",
-        message: "Unable to add data",
+        message: "Unable to get data",
         error: error,
       });
     }
   };
+
   static updateDiagnosis = async (req, res) => {
     try {
       const payload = req?.body?.diagnosticData;
@@ -82,7 +89,7 @@ class PatientDiagnosticController {
       if (data != null) {
         return res
           .status(409)
-          .send({ status: "failed", message: "Payment already exists." });
+          .send({ status: "failed", message: "Diagnostic already exists." });
       } else {
         const updatedPayment = await PatientDiagnosticModel.findByIdAndUpdate(
           { _id: id },
@@ -90,7 +97,7 @@ class PatientDiagnosticController {
         );
         return res.status(201).send({
           status: "success",
-          message: "Payment detail updated successfully",
+          message: "Diagnostic detail updated successfully",
           data: data,
         });
       }
@@ -115,7 +122,7 @@ class PatientDiagnosticController {
     } catch (error) {
       return res.status(400).send({
         status: "failed",
-        message: "Unable to delete patient",
+        message: "Unable to delete daignosis data",
         error: error,
       });
     }

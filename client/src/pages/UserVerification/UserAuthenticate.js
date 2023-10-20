@@ -10,7 +10,7 @@ function UserAuthenticate() {
   const { value } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    if (user.current && value == "success") {
+    if (user.current && value === "success") {
       user.current = false;
       setUser();
     }
@@ -22,7 +22,7 @@ function UserAuthenticate() {
         { withCredentials: true }
       );
 
-      if (response.data.status == "success") {
+      if (response.data.status === "success") {
         setUserInfo(response?.data?.user);
         const userToken = Cookies.get("auth");
         const expirationTime = new Date(new Date().getTime() + 6000000);
@@ -31,7 +31,7 @@ function UserAuthenticate() {
           navigate("/dashboard");
         }, 3000);
       } else {
-        console.log(22, response);
+        toast.error(response?.data?.message);
       }
     } catch (error) {
       toast.error(error.response.data.message, {
@@ -46,7 +46,7 @@ function UserAuthenticate() {
   return (
     <>
       <ToastContainer />
-      {value == "success" ? (
+      {value === "success" ? (
         <div className="vh-100 d-flex justify-content-center align-items-center">
           <div className="col-md-4">
             <div className="border border-3 border-success"></div>
