@@ -29,12 +29,12 @@ const UserRegistration = () => {
     e.preventDefault();
     dispatch(registerUser(formData)).then((result) => {
       if (result.payload.status === "success") {
-        toast.success(result.payload.message, { theme: "dark" });
+        toast.success(result.payload.message, { theme: "colored" });
         setTimeout(() => {
           navigate("/auth/login");
         }, 5000);
       } else {
-        toast.error(result.payload.message, { theme: "dark" });
+        toast.error(result.payload.message, { theme: "colored" });
       }
     });
   };
@@ -153,6 +153,7 @@ const UserRegistration = () => {
                     onClick={() => window.location.replace(getGoogleUrl(from))}
                     target="_blank"
                     className="px-2"
+                    style={{ cursor: "pointer" }}
                   >
                     {" "}
                     <img

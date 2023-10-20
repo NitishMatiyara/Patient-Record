@@ -31,11 +31,11 @@ function UserAuthenticate() {
           navigate("/dashboard");
         }, 3000);
       } else {
-        toast.error(response?.data?.message);
+        toast.error(response?.data?.message, { theme: "colored" });
       }
     } catch (error) {
       toast.error(error.response.data.message, {
-        theme: "dark",
+        theme: "colored",
         position: "top-center",
       });
       setTimeout(() => {

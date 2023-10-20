@@ -26,19 +26,20 @@ export const deleteRecord = async (id, collection) => {
           break;
       }
       if (response.status === 201) {
-        toast.success(response.data.message, { theme: "dark" });
+        toast.success(response.data.message, { theme: "colored" });
       } else if (response.status === 440) {
-        toast.warning(response.data.message);
+        toast.warning(response.data.message, { theme: "colored" });
         setTimeout(() => {
           <Navigate to={"/home"} />;
         }, 5000);
       } else {
         toast.error(
-          response.data.error ? response.data.error : response.data.message
+          response.data.error ? response.data.error : response.data.message,
+          { theme: "colored" }
         );
       }
     } catch (err) {
-      toast.error(err.message);
+      toast.error(err.message, { theme: "colored" });
     }
   }
 };

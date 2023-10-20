@@ -33,12 +33,12 @@ const UserLogin = () => {
         const userToken = result.payload.token;
         const expirationTime = new Date(new Date().getTime() + 6000000);
         Cookies.set("userToken", userToken, { expires: expirationTime });
-        toast.success(result.payload.message);
+        toast.success(result.payload.message, { theme: "colored" });
         setTimeout(() => {
           navigate("/dashboard");
         }, 3000);
       } else {
-        toast.error(result.payload.message, { theme: "dark" });
+        toast.error(result.payload.message, { theme: "colored" });
       }
     });
   };
@@ -132,6 +132,7 @@ const UserLogin = () => {
                     onClick={() => window.location.replace(getGoogleUrl(from))}
                     target="_blank"
                     className="px-2"
+                    style={{ cursor: "pointer" }}
                   >
                     {" "}
                     <img

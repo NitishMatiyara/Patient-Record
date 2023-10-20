@@ -20,13 +20,13 @@ const ResendVerifyLink = () => {
         { email }
       );
       if (response.data.status === "success") {
-        toast.success(response.data.message);
+        toast.success(response.data.message, { theme: "colored" });
       } else {
         setValid(false);
-        toast.error(response.data.message, { theme: "dark" });
+        toast.error(response.data.message, { theme: "colored" });
       }
     } catch (error) {
-      toast.error(error.response);
+      toast.error(error.response, { theme: "colored" });
     }
   };
   return (
