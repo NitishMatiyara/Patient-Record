@@ -26,7 +26,7 @@ const Home = () => {
             color: "darkslategrey",
           }}
         >
-          <h1 className="fw-bold m-0 display-1">MEDICAL</h1>
+          <h1 className="fw-bold m-0 display-1">PATIENT</h1>
           <h1 className="fw-bold display-2">RECORDS</h1>
           <span className="fs-4">Keep track of your patients...</span>
         </div>
