@@ -231,6 +231,7 @@ class UserController {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
+      console.log(res.data)
       return res.data;
     } catch (error) {
       return error;
