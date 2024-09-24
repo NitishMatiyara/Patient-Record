@@ -16,13 +16,13 @@ useEffect(() => {
   };
 
   fetchDiagnosisData();
-}, []); // Only run when patientId changes
+}, [patientId]); // Only run when patientId changes
 
   const deleteHandler = async (id) => {
     let collectionName = "diagnosis";
 
     await deleteRecord(id, collectionName);
-    getDiagnosisData(patientId);
+    fetchDiagnosisData(patientId);
   };
 
   const columns = [
