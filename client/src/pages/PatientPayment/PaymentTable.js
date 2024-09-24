@@ -16,12 +16,12 @@ useEffect(() => {
   };
 
   fetchPayments();
-}, []); // Only run when patientId changes
+}, [patientId]); // Only run when patientId changes
 
   const deleteHandler = async (id) => {
     let collectionName = "payment";
     await deleteRecord(id, collectionName);
-    getPayments(patientId);
+    fetchPayments(patientId);
   };
 
   const columns = [
