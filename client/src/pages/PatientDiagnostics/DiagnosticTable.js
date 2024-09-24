@@ -66,7 +66,7 @@ useEffect(() => {
       <div className="card-header text-center">
         <span className="fs-5 font-weight-bold">OPD</span>
         <Link
-          to={`/patient/diagnosisData/${patientId}`}
+          to={`/patient/opd/${patientId}`}
           className="btn btn-outline-success"
           style={{ float: "right" }}
         >
