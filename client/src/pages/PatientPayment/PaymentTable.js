@@ -16,7 +16,7 @@ useEffect(() => {
   };
 
   fetchPayments();
-}, [patientId]); // Only run when patientId changes
+}, []); // Only run when patientId changes
 
   const deleteHandler = async (id) => {
     let collectionName = "payment";
