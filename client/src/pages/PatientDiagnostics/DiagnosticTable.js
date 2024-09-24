@@ -6,16 +6,14 @@ import { getAllDiagnosis } from "../../services/api/patientDiagnostic";
 import { deleteRecord } from "../../helpers/action";
 
 const DiagnosticTable = () => {
-  const [diagnosisData, setDiagnosisData] = useState([]);
-  const { id: patientId } = useParams();
-  useEffect(() => {
-    getDiagnosisData(patientId);
-  }, [diagnosisData]);
-
-  const getDiagnosisData = async (patientId) => {
+useEffect(() => {
+  const fetchDiagnosisData = async () => {
     const data = await getAllDiagnosis(patientId);
-    setDiagnosisData(data.data);
+    setDiagnosisData(data.data || []); // Ensure it's always an array
   };
+
+  fetchDiagnosisData();
+}, [patientId]); // Only run when patientId changes
 
   const deleteHandler = async (id) => {
     let collectionName = "diagnosis";
