@@ -6,6 +6,9 @@ import { getAllDiagnosis } from "../../services/api/patientDiagnostic";
 import { deleteRecord } from "../../helpers/action";
 
 const DiagnosticTable = () => {
+const [diagnosisData, setDiagnosisData] = useState([]);
+const { id: patientId } = useParams();
+
 useEffect(() => {
   const fetchDiagnosisData = async () => {
     const data = await getAllDiagnosis(patientId);
