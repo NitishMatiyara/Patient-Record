@@ -9,21 +9,21 @@ const DiagnosticTable = () => {
 const [diagnosisData, setDiagnosisData] = useState([]);
 const { id: patientId } = useParams();
 
-useEffect(() => {
-  const fetchDiagnosisData = async () => {
-    const data = await getAllDiagnosis(patientId);
-    setDiagnosisData(data.data || []); // Ensure it's always an array
-  };
+const fetchDiagnosisData = async () => {
+  const data = await getAllDiagnosis(patientId);
+  setDiagnosisData(data.data || []); // Ensure it's always an array
+};
 
+useEffect(() => {
   fetchDiagnosisData();
 }, [patientId]); // Only run when patientId changes
 
-  const deleteHandler = async (id) => {
-    let collectionName = "diagnosis";
+const deleteHandler = async (id) => {
+  let collectionName = "diagnosis";
 
-    await deleteRecord(id, collectionName);
-    fetchDiagnosisData(patientId);
-  };
+  await deleteRecord(id, collectionName);
+  fetchDiagnosisData(); // Fetch updated data after deletion
+};
 
   const columns = [
     {
