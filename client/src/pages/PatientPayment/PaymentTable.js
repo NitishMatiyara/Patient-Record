@@ -9,14 +9,14 @@ import { ToastContainer } from "react-toastify";
 const PaymentTable = () => {
   const [payments, setPayments] = useState([]);
   const { id: patientId } = useParams();
-  useEffect(() => {
-    getPayments(patientId);
-  }, [payments]);
-
-  const getPayments = async (patientId) => {
+useEffect(() => {
+  const fetchPayments = async () => {
     const data = await getAllPayments(patientId);
-    setPayments(data.data);
+    setPayments(data.data || []); // Ensure it's always an array
   };
+
+  fetchPayments();
+}, [patientId]); // Only run when patientId changes
 
   const deleteHandler = async (id) => {
     let collectionName = "payment";
